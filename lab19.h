@@ -74,13 +74,20 @@ void Unit::guard(){
 }
 
 int Unit::beAttacked(int oppatk){
-	int a;
-	if(guard_on=false){
-		return hpmax-=(atk-def)-hp;
+    int ATK;
+	if(!guard_on){
+	    ATK=oppatk-def;
+		hp-=ATK;
+		return ATK;
 	}else{
-		return hpmax-=(atk-def)/3;
+	    ATK=(oppatk-def)/3;
+		hp-=ATK;
+	    return ATK;
 	}
-}
+};
+
+
+
 int Unit::attack(Unit &target){
 	return target.beAttacked(atk);
 }
